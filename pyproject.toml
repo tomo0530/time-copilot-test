@@ -1,0 +1,31 @@
+[project]
+name = "project"
+version = "0.1.0"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "project-module",
+]
+
+[tool.uv]
+default-groups = "all"
+
+[tool.uv.sources]
+project-module = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "mypy~=1.15.0",
+    "ruff~=0.11.2",
+    "pytest~=8.4.1",
+    "pytest-cov~=6.2.1",
+    "pytest-mock~=3.12.0",
+]
+jupyter = [
+    "jupyterlab~=4.3.6",
+    "notebook~=7.3.3",
+]
+
+[tool.uv.workspace]
+members = [
+    "project_module",
+]
