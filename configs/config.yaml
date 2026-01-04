@@ -1,0 +1,18 @@
+defaults:
+  - experiment: store_item
+  - _self_
+
+paths:
+  dataset_dir: dataset
+  output_dir: outputs
+  log_dir: logs
+
+gpu:
+  auto_detect: true
+  strategy: hybrid
+
+seed: 42
+
+hydra:
+  run:
+    dir: .

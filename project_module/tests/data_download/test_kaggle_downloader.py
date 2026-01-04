@@ -17,6 +17,7 @@ from project_module.data_download.kaggle_downloader import (
 
 def test_parse_legacy_credentials_from_token_colon_format() -> None:
     credentials = parse_legacy_credentials_from_token(token="user:key")
+    assert credentials is not None
     assert credentials.username == "user"
     assert credentials.key == "key"
 
@@ -24,6 +25,7 @@ def test_parse_legacy_credentials_from_token_colon_format() -> None:
 def test_parse_legacy_credentials_from_token_json_format() -> None:
     token = '{"username": "user", "key": "key"}'
     credentials = parse_legacy_credentials_from_token(token=token)
+    assert credentials is not None
     assert credentials.username == "user"
     assert credentials.key == "key"
 
@@ -31,6 +33,7 @@ def test_parse_legacy_credentials_from_token_json_format() -> None:
 def test_parse_legacy_credentials_from_token_env_json_format() -> None:
     token = '{"KAGGLE_USERNAME": "user", "KAGGLE_KEY": "key"}'
     credentials = parse_legacy_credentials_from_token(token=token)
+    assert credentials is not None
     assert credentials.username == "user"
     assert credentials.key == "key"
 
@@ -78,7 +81,10 @@ def test_prepare_kaggle_auth_uses_token_path(
     token_file.parent.mkdir()
     token_file.write_text("token", encoding="utf-8")
     env_file = tmp_path / ".env"
-    env_file.write_text('KAGGLE_API_TOKEN="~/.kaggle/access_token"\n', encoding="utf-8")
+    env_file.write_text(
+        'KAGGLE_API_TOKEN="~/.kaggle/access_token"\n',
+        encoding="utf-8",
+    )
 
     monkeypatch.setenv("HOME", str(tmp_path))
     original_token = os.environ.pop("KAGGLE_API_TOKEN", None)

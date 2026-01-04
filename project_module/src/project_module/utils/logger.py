@@ -56,6 +56,7 @@ def get_custom_logger(
     # Clear existing handlers to prevent duplicate logs
     if logger.hasHandlers():
         logger.handlers.clear()
+    logger.propagate = False
 
     # Formatters for stdout and file
     stdout_formatter = logging.Formatter(

@@ -1,0 +1,41 @@
+name: m5
+
+dataset:
+  path: m5-forecasting-accuracy
+  sales_file: sales_train_evaluation.csv
+  calendar_file: calendar.csv
+  prices_file: sell_prices.csv
+  m5_aggregation_level: 6
+
+preprocessing:
+  unique_id_format: null
+  unique_id_column: unique_id
+  date_column: ds
+  target_column: y
+  freq: D
+  exclude_zero_sales: false
+
+holdout:
+  strategy: time_series_split
+  train_end: null
+  test_start: null
+  test_end: null
+  train_end_day: 1913
+  test_start_day: 1914
+  test_end_day: 1941
+
+forecasting:
+  horizon: 28
+
+evaluation:
+  metric: wrmsse
+  weight_days: 28
+  hierarchy_levels: 12
+
+evaluation_levels:
+  - name: state_category
+    levels: [6]
+    series_count: 9
+    models: all
+    exclude_models: null
+    description: "State x Category (9 series) を報告"

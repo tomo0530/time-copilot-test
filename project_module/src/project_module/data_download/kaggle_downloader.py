@@ -112,9 +112,9 @@ def load_kaggle_env_values(env_path: Path) -> KaggleAuthValues:
     if env_path.exists():
         load_dotenv(dotenv_path=env_path, override=False)
     return KaggleAuthValues(
-        api_token=os.getenv("KAGGLE_API_TOKEN"),
-        username=os.getenv("KAGGLE_USERNAME"),
-        key=os.getenv("KAGGLE_KEY"),
+        api_token=os.getenv(key="KAGGLE_API_TOKEN"),
+        username=os.getenv(key="KAGGLE_USERNAME"),
+        key=os.getenv(key="KAGGLE_KEY"),
     )
 
 

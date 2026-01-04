@@ -1,0 +1,31 @@
+name: rossmann
+
+dataset:
+  path: rossmann-store-sales
+  train_file: train.csv
+  test_file: test.csv
+
+preprocessing:
+  unique_id_format: "store_{Store}"
+  unique_id_column: unique_id
+  date_column: Date
+  target_column: Sales
+  freq: D
+  exclude_zero_sales: true
+
+holdout:
+  strategy: time_series_split
+  train_end: null
+  test_start: null
+  test_end: null
+  train_end_day: null
+  test_start_day: null
+  test_end_day: null
+
+forecasting:
+  horizon: 42
+
+evaluation:
+  metric: rmspe
+  weight_days: null
+  hierarchy_levels: null
