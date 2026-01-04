@@ -1,6 +1,6 @@
 defaults:
-  - experiment: store_item
   - _self_
+  - experiment: store_item
 
 paths:
   dataset_dir: dataset
